@@ -136,6 +136,14 @@ module.exports = {
       {
         test: /\.[jt]sx?$/,
         include: [
+          /src/,
+        ],
+        use: 'swc-loader',
+      },
+
+      {
+        test: /\.[jt]sx?$/,
+        include: [
           /node_modules(.*[/\\])+react/,
           /node_modules(.*[/\\])+@react-native/,
           /node_modules(.*[/\\])+@react-navigation/,
@@ -148,23 +156,25 @@ module.exports = {
         ],
         use: 'babel-loader',
       },
+
       /**
        * Here you can adjust loader that will process your files.
        *
        * You can also enable persistent caching with `cacheDirectory` - please refer to:
        * https://github.com/babel/babel-loader#options
        */
-      {
-        test: /\.[jt]sx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            /** Add React Refresh transform only when HMR is enabled. */
-            plugins: devServer.hmr ? ['module:react-refresh/babel'] : undefined,
-          },
-        },
-      },
+      // {
+      //   test: /\.[jt]sx?$/,
+      //   exclude: /node_modules/,
+      //   use: {
+      //     loader: 'babel-loader',
+      //     options: {
+      //       /** Add React Refresh transform only when HMR is enabled. */
+      //       plugins: devServer.hmr ? ['module:react-refresh/babel'] : undefined,
+      //     },
+      //   },
+      // },
+
       /**
        * This loader handles all static assets (images, video, audio and others), so that you can
        * use (reference) them inside your application.
